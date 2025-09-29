@@ -14,7 +14,7 @@ const Layout = () => {
         
         <div className="flex-1 min-h-screen">
           {/* Mobile Header */}
-          <div className="lg:hidden bg-white border-b border-slate-200 px-4 py-3">
+<div className="lg:hidden bg-white border-b border-slate-200 px-4 py-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 <Button
@@ -33,6 +33,22 @@ const Layout = () => {
                   </h1>
                 </div>
               </div>
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={async () => {
+                  try {
+                    const { ApperUI } = window.ApperSDK;
+                    await ApperUI.logout();
+                    window.location.href = '/login';
+                  } catch (error) {
+                    console.error("Logout failed:", error);
+                  }
+                }}
+              >
+                <ApperIcon name="LogOut" className="w-4 h-4 mr-1" />
+                Logout
+              </Button>
             </div>
           </div>
 
