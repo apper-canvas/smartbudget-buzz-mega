@@ -126,20 +126,26 @@ const TransactionForm = ({ onSubmit, onCancel, initialData = null, isEditing = f
               onChange={(e) => handleChange("category", e.target.value)}
             >
               <option value="">Select category...</option>
-              {formData.type === "expense" && 
+{formData.type === "expense" && expenseCategories.length > 0 && 
                 expenseCategories.map(category => (
                   <option key={category.Id} value={category.name}>
                     {category.name}
                   </option>
                 ))
               }
-              {formData.type === "income" && 
+              {formData.type === "expense" && expenseCategories.length === 0 && (
+                <option value="" disabled>Loading categories...</option>
+              )}
+              {formData.type === "income" && incomeCategories.length > 0 && 
                 incomeCategories.map(category => (
                   <option key={category.Id} value={category.name}>
                     {category.name}
                   </option>
                 ))
               }
+              {formData.type === "income" && incomeCategories.length === 0 && (
+                <option value="" disabled>Loading categories...</option>
+              )}
             </Select>
           </FormField>
 
